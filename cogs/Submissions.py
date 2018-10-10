@@ -4,6 +4,7 @@ import discord
 import datetime
 import json
 import os
+import re
 from subprocess import Popen
 import subprocess
 
@@ -14,20 +15,27 @@ from utils import Util, Configuration, Permission
 class Submissions:
     def __init__(self, bot):
         self.bot:commands.Bot = bot
+        self.upvote = utils.get(bot.emojis, id=499401182427611136)
 
     @commands.command()
-    async def submit(self, ctx, link):
-        channel = ctx.bot.get_channel(int(Configuration.getConfigVar(ctx.guild.id, "SUBMISSION_CHANNEL")))
-        upvote = utils.get(self.bot.emojis, id=499401182427611136)
-        if channel != None:
-            try:
-                message = await channel.send(f"**Artist's Username:** {ctx.author.name}#{ctx.author.discriminator}\n\n**Artist's userID:** {ctx.author.id}\n\n{link}")
-                await message.add_reaction(upvote)
-                await ctx.send("I've sent your submission through, goodluck with the event!")
-            except discord.Forbidden:
-                    await ctx.send("I was not able to send to the suggestion channel, make sure I have permissions.")
-        else:
-            await ctx.send("Either that there is no submission channel, or you are trying to send an empty submission.")
+    async def submit(self, ctx, *content):
+        channel = self.bot.get_channel(int(Configuration.getConfigVar(ctx.guild.id, "SUBMISSION_CHANNEL")))
+        if not channel:
+            return await ctx.send("The submission channel is not configured, please tell a moderator.")
+
+        links = re.findall(r"https?://\S+\.\S+", ' '.join(content))
+        if not links or len(links) > 5:
+            return await ctx.send("Your submission must contain at least one link, and no more than five!")
+
+        try:
+            message = await channel.send((
+                f"**Artist:** {ctx.author.name}#{ctx.author.discriminator} ({ctx.author.id})\n"
+                f"**Link{'s' if len(links) > 1 else ''}:** {' '.join(links)}"
+            ))
+            await message.add_reaction(self.upvote)
+            return await ctx.send("I've sent your submission through, good luck with the event!")
+        except discord.Forbidden:
+            return await ctx.send("I can't send messages to the submission channel, please tell a moderator.")
 
 def setup(bot):
     bot.add_cog(Submissions(bot))
