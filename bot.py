@@ -7,6 +7,8 @@ import time
 import math
 import os
 import traceback
+
+from discord.abc import PrivateChannel
 from discord.ext import commands
 from discord import utils
 from utils import Configuration, Util, BugLog
@@ -52,7 +54,7 @@ async def on_command_error(ctx: commands.Context, error):
         BugLog.exception(f"Command execution failed:"
                                 f"    Command: {ctx.command}"
                                 f"    Message: {ctx.message.content}"
-                                f"    Channel: {'Private Message' if isinstance(ctx.channel, abc.PrivateChannel) else ctx.channel.name}"
+                                f"    Channel: {'Private Message' if isinstance(ctx.channel, PrivateChannel) else ctx.channel.name}"
                                 f"    Sender: {ctx.author.name}#{ctx.author.discriminator}"
                                 f"    Exception: {error}", error)
 
@@ -62,7 +64,7 @@ async def on_command_error(ctx: commands.Context, error):
         embed.set_author(name="Command execution failed:")
         embed.add_field(name="Command", value=ctx.command)
         embed.add_field(name="Original message", value=ctx.message.content)
-        embed.add_field(name="Channel", value='Private Message' if isinstance(ctx.channel, abc.PrivateChannel) else ctx.channel.name)
+        embed.add_field(name="Channel", value='Private Message' if isinstance(ctx.channel, PrivateChannel) else ctx.channel.name)
         embed.add_field(name="Sender", value=f"{ctx.author.name}#{ctx.author.discriminator}")
         embed.add_field(name="Exception", value=error)
         v = ""

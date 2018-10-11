@@ -34,7 +34,6 @@ def loadGlobalConfig():
         BugLog.error("Failed to parse configuration.")
         print(e)
         raise e
-    # Database.initialize()
 
 
 def loadConfig(guild:discord.Guild):

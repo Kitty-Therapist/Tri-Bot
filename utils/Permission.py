@@ -8,6 +8,11 @@ def is_owner():
         return ctx.bot.is_owner(ctx.author)
     return commands.check(predicate)
 
+def head_only():
+    async def predicate(ctx):
+        return ctx.author.id in [187606096418963456, 298618155281154058, 169197827002466304, 263495765270200320, 117101067136794628, 164475721173958657, 191793155685744640]
+    return commands.check(predicate)
+
 
 def isServerAdmin(ctx:commands.Context):
     if ctx.guild is None:
