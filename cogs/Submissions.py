@@ -1,16 +1,9 @@
-import asyncio
-import importlib
 import discord
-import datetime
-import json
-import os
 import re
-from subprocess import Popen
-import subprocess
 
 from discord.ext import commands
 from discord import utils
-from utils import Util, Configuration, Permission
+from utils import Configuration, Permission
 
 class Submissions:
     def __init__(self, bot):
@@ -19,7 +12,7 @@ class Submissions:
 
     @commands.command()
     async def submit(self, ctx, *content):
-        channel = self.bot.get_channel(int(Configuration.getConfigVar(ctx.guild.id, "SUBMISSION_CHANNEL")))
+        channel = self.bot.get_channel(Configuration.getConfigVar(ctx.guild.id, "SUBMISSION_CHANNEL"))
         if not channel:
             return await ctx.send("The submission channel is not configured, please tell a moderator.")
 
