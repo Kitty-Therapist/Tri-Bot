@@ -9,7 +9,7 @@ import subprocess
 
 from discord.ext import commands
 from discord import utils
-from utils import Util, Configuration, Permission
+from utils import Configuration, Permission
 
 class Submissions:
     def __init__(self, bot):
@@ -17,7 +17,7 @@ class Submissions:
 
     @commands.command()
     async def submit(self, ctx, link):
-        channel = ctx.bot.get_channel(int(Configuration.getConfigVar(ctx.guild.id, "SUBMISSION_CHANNEL")))
+        channel = ctx.bot.get_channel(Configuration.getConfigVar(ctx.guild.id, "SUBMISSION_CHANNEL"))
         upvote = utils.get(self.bot.emojis, id=499401182427611136)
         if channel != None:
             try:
