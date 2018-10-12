@@ -26,7 +26,7 @@ class EventControl:
         for role in channel.guild.roles:
             if role.id == channel.guild.id:
                 everyone = role
-                await channel.set_permissions(everyone, read_messages=True, send_messages=False)
+                await channel.set_permissions(everyone, read_messages=True, send_messages=False, add_reactions=False)
                 await ctx.send("Event has started!")
 
     @commands.command(hidden=True)
