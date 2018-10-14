@@ -62,7 +62,7 @@ class EventControl:
 
         os.remove('submissions/currentevent.json')
 
-        for ctx.server in bot.guilds:
+        for ctx.server in ctx.bot.guilds:
             channel = ctx.bot.get_channel(int(Configuration.getConfigVar(server.id, "SUBMISSION_CHANNEL")))
             for role in channel.guild.roles:
                 if role.id == channel.guild.id:
