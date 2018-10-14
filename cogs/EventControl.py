@@ -2,6 +2,7 @@ import asyncio
 import importlib
 import datetime
 import os
+import operator
 import json
 from subprocess import Popen
 import subprocess
@@ -55,18 +56,28 @@ class EventControl:
             if role.id == channel.guild.id:
                 everyone = role
                 await channel.set_permissions(everyone, read_messages=False)
-        await ctx.send("Event has ended!")
+        await ctx.send("Event has ended! Results below.")
         
         message_votes = {}
         with open(f'submissions/{ctx.guild.id}.json', 'r') as infile:
             data = json.load(infile)
         for submitter in data:
-            msg = channel.get_message(submitter['MESSAGE_ID'])
+            msg = await channel.get_message(submitter['MESSAGE_ID'])
             votecount = msg.reactions[0].count
-            message_votes[str(msg.id)] = votecount
+            message_votes[str(submitter)] = votecount
+        message_votes_sorted = sort(message_votes.items(), key=operator.itemgetter(1))
 
+        first_points = list(message_votes_sorted.items())[0]
+        first_author = await ctx.bot.get_user_info(int(list(message_votes_sorted)[0])
+        second_points = list(message_votes_sorted.items())[1]
+        second_author = await ctx.bot.get_user_info(int(list(message_votes_sorted)[1])
+        third_points = list(message_votes_sorted.items())[2]
+        third_author = await ctx.bot.get_user_info(int(list(message_votes_sorted)[2])                                                
         e = discord.Embed(color=0x7289DA, timestamp=datetime.utcnow())
-        e.add_field(name="1st Place", value='test', inline=True)
+        e.add_field(name="1st Place", value=f'Submitted by {first_author} : {first_points} Upvotes', inline=True)
+        e.add_field(name="2nd Place", value=f'Submitted by {second_author} : {second_points} Upvotes', inline=True)
+        e.add_field(name="3rd Place", value=f'Submitted by {third_author} : {third_points} Upvotes', inline=True)
+        await ctx.send(embed=e)
 
         os.remove(f'submissions/{ctx.guild.id}.json')
 
