@@ -5,6 +5,7 @@ import os
 import json
 from subprocess import Popen
 import subprocess
+import datetime
 
 from discord.ext import commands
 from discord import utils
@@ -47,8 +48,6 @@ class EventControl:
         channel = ctx.bot.get_channel(int(Configuration.getConfigVar(ctx.guild.id, "SUBMISSION_CHANNEL")))
         everyone = None
 
-        os.remove(f'submissions/{ctx.guild.id}.json')
-
         if ctx.author.id not in heads:
             return
 
@@ -57,6 +56,19 @@ class EventControl:
                 everyone = role
                 await channel.set_permissions(everyone, read_messages=False)
         await ctx.send("Event has ended!")
+        
+        message_votes = {}
+        with open(f'submissions/{ctx.guild.id}.json', 'r') as infile:
+            data = json.load(infile)
+        for submitter in data:
+            msg = channel.get_message(submitter['MESSAGE_ID'])
+            votecount = msg.reactions[0].count
+            message_votes[str(msg.id)] = votecount
+
+        e = discord.Embed(color=0x7289DA, timestamp=datetime.utcnow())
+        e.add_field(name="1st Place", value='test', inline=True)
+
+        os.remove(f'submissions/{ctx.guild.id}.json')
 
 def setup(bot):
     bot.add_cog(EventControl(bot))
