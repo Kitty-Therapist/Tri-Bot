@@ -2,6 +2,7 @@ import asyncio
 import importlib
 import datetime
 import os
+import json
 from subprocess import Popen
 import subprocess
 
@@ -19,6 +20,10 @@ class EventControl:
         heads = [187606096418963456, 298618155281154058, 169197827002466304, 263495765270200320, 117101067136794628, 164475721173958657, 191793155685744640]
         channel = ctx.bot.get_channel(int(Configuration.getConfigVar(ctx.guild.id, "SUBMISSION_CHANNEL")))
         everyone = None
+
+        data = {}
+        with open(f'submissions/{ctx.guild.id}.json', 'w') as outfile:
+            json.dump(data, outfile, indent=4)
 
         if ctx.author.id not in heads:
             return
