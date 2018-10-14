@@ -68,15 +68,15 @@ class EventControl:
         message_votes_sorted = sort(message_votes.items(), key=operator.itemgetter(1))
 
         first_points = list(message_votes_sorted.items())[0]
-        first_author = await ctx.bot.get_user_info(int(list(message_votes_sorted)[0])
+        first_author = await ctx.bot.get_user_info(int(list(message_votes_sorted)[0]))
         second_points = list(message_votes_sorted.items())[1]
-        second_author = await ctx.bot.get_user_info(int(list(message_votes_sorted)[1])
+        second_author = await ctx.bot.get_user_info(int(list(message_votes_sorted)[1]))
         third_points = list(message_votes_sorted.items())[2]
-        third_author = await ctx.bot.get_user_info(int(list(message_votes_sorted)[2])                                                
+        third_author = await ctx.bot.get_user_info(int(list(message_votes_sorted)[2]))                                                
         e = discord.Embed(color=0x7289DA, timestamp=datetime.utcnow())
-        e.add_field(name="1st Place", value=f'Submitted by {first_author} : {first_points} Upvotes', inline=True)
-        e.add_field(name="2nd Place", value=f'Submitted by {second_author} : {second_points} Upvotes', inline=True)
-        e.add_field(name="3rd Place", value=f'Submitted by {third_author} : {third_points} Upvotes', inline=True)
+        e.add_field(name="1st Place", value=f'Submitted by {first_author.name} : {first_points} Upvotes', inline=True)
+        e.add_field(name="2nd Place", value=f'Submitted by {second_author.name} : {second_points} Upvotes', inline=True)
+        e.add_field(name="3rd Place", value=f'Submitted by {third_author.name} : {third_points} Upvotes', inline=True)
         await ctx.send(embed=e)
 
         os.remove(f'submissions/{ctx.guild.id}.json')
