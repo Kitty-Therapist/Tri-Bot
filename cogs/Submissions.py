@@ -5,6 +5,7 @@ import os
 import json
 
 from discord.ext import commands
+from discord.ext.commands import BucketType
 from discord import utils
 from utils import Configuration, Permission
 
@@ -17,6 +18,7 @@ class Submissions:
         os.makedirs('submissions')
 
     @commands.command()
+    @commands.cooldown(1, 10, BucketType.user)
     async def submit(self, ctx, *content):
         channel = self.bot.get_channel(Configuration.getConfigVar(ctx.guild.id, "SUBMISSION_CHANNEL"))
         upvote = utils.get(self.bot.emojis, id=499401182427611136)
