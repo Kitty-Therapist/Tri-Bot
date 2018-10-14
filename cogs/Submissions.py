@@ -24,9 +24,7 @@ class Submissions:
         upvote = utils.get(self.bot.emojis, id=499401182427611136)
 
         if os.path.exists(f'submissions/{ctx.guild.id}.json') is False:
-            data = {}
-            with open(f'submissions/{ctx.guild.id}.json', 'w') as outfile:
-                json.dump(data, outfile, indent=4)
+            return await ctx.send("There is currently no event running.")
 
         if not channel:
             return await ctx.send("The submission channel is not configured, please tell a moderator.")
