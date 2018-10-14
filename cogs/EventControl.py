@@ -61,8 +61,10 @@ class EventControl:
         message_votes = {}
         with open(f'submissions/{ctx.guild.id}.json', 'r') as infile:
             data = json.load(infile)
+            print(data)
         for submitter in data:
-            msg = await channel.get_message(submitter['MESSAGE_ID'])
+            print(submitter)
+            msg = await channel.get_message(int(submitter['MESSAGE_ID']))
             votecount = msg.reactions[0].count
             message_votes[str(submitter)] = votecount
         message_votes_sorted = sort(message_votes.items(), key=operator.itemgetter(1))
@@ -74,9 +76,9 @@ class EventControl:
         third_points = list(message_votes_sorted.items())[2]
         third_author = await ctx.bot.get_user_info(int(list(message_votes_sorted)[2]))                                                
         e = discord.Embed(color=0x7289DA, timestamp=datetime.utcnow())
-        e.add_field(name="1st Place", value=f'Submitted by {first_author.name} : {first_points} Upvotes', inline=True)
-        e.add_field(name="2nd Place", value=f'Submitted by {second_author.name} : {second_points} Upvotes', inline=True)
-        e.add_field(name="3rd Place", value=f'Submitted by {third_author.name} : {third_points} Upvotes', inline=True)
+        e.add_field(name="1st Place", value=f'Submitted by {first_author.name} : {str(first_points)} Upvotes', inline=True)
+        e.add_field(name="2nd Place", value=f'Submitted by {second_author.name} : {str(second_points)} Upvotes', inline=True)
+        e.add_field(name="3rd Place", value=f'Submitted by {third_author.name} : {str(third_points)} Upvotes', inline=True)
         await ctx.send(embed=e)
 
         os.remove(f'submissions/{ctx.guild.id}.json')
