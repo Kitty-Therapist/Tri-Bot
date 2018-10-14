@@ -48,7 +48,8 @@ class Submissions:
                     f"**Link{'s' if len(links) > 1 else ''}:** {' '.join(links)}"
                 ))
                 await message.add_reaction(upvote)
-                data[str(ctx.author.id)] = {'SUBMISSION_LINK': ', '.join(links)}
+                message_id = message.id
+                data[str(ctx.author.id)] = {'SUBMISSION_LINK': ', '.join(links), 'MESSAGE_ID' : message_id, 'VOTES' : 0}
                 reply = await ctx.send("I've sent your submission through, good luck with the event!")
                 await asyncio.sleep(10)
                 await reply.delete()
