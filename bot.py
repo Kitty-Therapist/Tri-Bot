@@ -15,6 +15,9 @@ from utils import Configuration, Util, BugLog
 
 if not os.path.exists('config'):
     os.makedirs('config')
+    
+if not os.path.exists('submissions'):
+    os.makedirs('submissions')
 
 TOKEN = "No, you cannot have the token."
 
