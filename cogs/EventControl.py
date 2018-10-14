@@ -28,11 +28,11 @@ class EventControl:
             if channel is None:
                 return await ctx.send("One of the event guilds do not have a submission channel set or the submission channel was deleted!")
         
-        if os.path.exists('submissions/currentevent.json') is True:
+        if os.path.exists(f'submissions/currentevent.json') is True:
             return await ctx.send("There is a event already running! Use the event end command before starting a new one.")
 
         data = {}
-        with open('submissions/currentevent.json', 'w') as outfile:
+        with open(f'submissions/currentevent.json', 'w') as outfile:
             json.dump(data, outfile, indent=4)
 
         for server in bot.guilds:
@@ -57,10 +57,10 @@ class EventControl:
             if channel is None:
                 return await ctx.send("One of the event guilds do not have a submission channel set or the submission channel was deleted!")
 
-        if os.path.exists('submissions/currentevent.json') is False:
+        if os.path.exists(f'submissions/currentevent.json') is False:
             return await ctx.send("There is currently no event running.")   
 
-        os.remove('submissions/currentevent.json')
+        os.remove(f'submissions/currentevent.json')
 
         for server in bot.guilds:
             channel = ctx.bot.get_channel(int(Configuration.getConfigVar(server.id, "SUBMISSION_CHANNEL")))
