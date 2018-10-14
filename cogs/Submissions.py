@@ -25,7 +25,7 @@ class Submissions:
         if os.path.exists('submissions/currentevent.json') is False:
             return await ctx.send("There is currently no event running.")
 
-        for server in ctx.bot.guilds:
+        for server in bot.guilds:
             channel = self.bot.get_channel(Configuration.getConfigVar(server.id, "SUBMISSION_CHANNEL"))
             if not channel:
                 return await ctx.send("The submission channel is not configured on one of the event servers, please tell a moderator immediantly.")
@@ -45,7 +45,7 @@ class Submissions:
                 return
             else:
                 message_ids = []
-                for server in ctx.bot.guilds:
+                for server in bot.guilds:
                     channel = self.bot.get_channel(Configuration.getConfigVar(server.id, "SUBMISSION_CHANNEL"))
                     message = await channel.send((
                         f"**Artist:** {ctx.author.name}#{ctx.author.discriminator} ({ctx.author.id})\n"
