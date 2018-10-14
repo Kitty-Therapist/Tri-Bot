@@ -20,11 +20,12 @@ class Submissions:
     async def submit(self, ctx, *content):
         channel = self.bot.get_channel(Configuration.getConfigVar(ctx.guild.id, "SUBMISSION_CHANNEL"))
         upvote = utils.get(self.bot.emojis, id=499401182427611136)
-        if not os.path.isfile(f'submissions/{ctx.guild.id}.json'):
+
+        if os.path.exists(f'submissions/{ctx.guild.id}.json') is False:
             data = {}
-            with open(f'submissions/{ctx.guild.id}.json', 'w+') as outfile:
+            with open(f'submissions/{ctx.guild.id}.json', 'w') as outfile:
                 json.dump(data, outfile, indent=4)
-                
+
         if not channel:
             return await ctx.send("The submission channel is not configured, please tell a moderator.")
 
@@ -35,7 +36,7 @@ class Submissions:
         try:
             with open(f'submissions/{ctx.guild.id}.json', 'r') as infile:
                 data = json.load(infile)
-            if data[str(ctx.author.id)] is not None:
+            if str(ctx.author.id) in data:
                 reply = await ctx.send("You already submitted the following: " + data[str(ctx.author.id)]['SUBMISSION_LINK'])
                 await asyncio.sleep(10)
                 await reply.delete()
@@ -52,7 +53,7 @@ class Submissions:
                 await asyncio.sleep(10)
                 await reply.delete()
                 await ctx.message.delete()
-            with open(f'submissions/{ctx.guild.id}.json', 'w+') as outfile:
+            with open(f'submissions/{ctx.guild.id}.json', 'w') as outfile:
                 json.dump(data, outfile, indent=4)
         except discord.Forbidden:
             return await ctx.send("I can't send messages to the submission channel, please tell a moderator.")
