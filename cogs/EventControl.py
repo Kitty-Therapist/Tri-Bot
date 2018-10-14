@@ -23,7 +23,7 @@ class EventControl:
         if ctx.author.id not in heads:
             return
 
-        for server in bot.guilds:
+        for server in ctx.bot.guilds:
             channel = ctx.bot.get_channel(int(Configuration.getConfigVar(server.id, "SUBMISSION_CHANNEL")))
             if channel is None:
                 return await ctx.send("One of the event guilds do not have a submission channel set or the submission channel was deleted!")
@@ -35,7 +35,7 @@ class EventControl:
         with open('submissions/currentevent.json', 'w') as outfile:
             json.dump(data, outfile, indent=4)
 
-        for server in bot.guilds:
+        for server in ctx.bot.guilds:
             channel = ctx.bot.get_channel(int(Configuration.getConfigVar(server.id, "SUBMISSION_CHANNEL")))
             for role in channel.guild.roles:
                 if role.id == channel.guild.id:
@@ -52,7 +52,7 @@ class EventControl:
         if ctx.author.id not in heads:
             return
 
-        for server in bot.guilds:
+        for server in ctx.bot.guilds:
             channel = ctx.bot.get_channel(int(Configuration.getConfigVar(server.id, "SUBMISSION_CHANNEL")))
             if channel is None:
                 return await ctx.send("One of the event guilds do not have a submission channel set or the submission channel was deleted!")
@@ -62,7 +62,7 @@ class EventControl:
 
         os.remove('submissions/currentevent.json')
 
-        for server in bot.guilds:
+        for ctx.server in bot.guilds:
             channel = ctx.bot.get_channel(int(Configuration.getConfigVar(server.id, "SUBMISSION_CHANNEL")))
             for role in channel.guild.roles:
                 if role.id == channel.guild.id:
