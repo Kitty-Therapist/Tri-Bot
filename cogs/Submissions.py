@@ -29,7 +29,7 @@ class Submissions:
         if not channel:
             return await ctx.send("The submission channel is not configured, please tell a moderator.")
 
-        links = re.findall(r"https?://\S+\.\S[^>]+", ' '.join(content))
+        links = re.findall(r"https?://\S+\.[^\s>]+", ' '.join(content))
         if not links or len(links) > 1:
             return await ctx.send("Your submission must contain at least one link, and no more than one!")
 
