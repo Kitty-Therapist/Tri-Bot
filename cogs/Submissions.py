@@ -56,8 +56,8 @@ class Submissions:
                 await ctx.message.delete()
             with open(f'submissions/{ctx.guild.id}.json', 'w') as outfile:
                 json.dump(data, outfile, indent=4)
-        except discord.Forbidden:
-            return await ctx.send("I can't send messages to the submission channel, please tell a moderator.")
+       # except discord.Forbidden:
+        #    return await ctx.send("I can't send messages to the submission channel, please tell a moderator.")
 
 
 def setup(bot):
