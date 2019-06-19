@@ -1,15 +1,13 @@
-
 import os
-
-
 from discord.ext import commands
 
-class Reload:
+class Reload(commands.Cog):
     def __init__(self, bot):
         self.bot:commands.Bot = bot
 
-    async def __local_check(self, ctx):
+    async def cog_check(self, ctx):
         return await ctx.bot.is_owner(ctx.author)
+
 
     @commands.command(hidden=True)
     async def reload(self, ctx, *, cog: str):

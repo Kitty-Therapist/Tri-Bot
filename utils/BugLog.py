@@ -46,13 +46,13 @@ def startupError(message, error):
         "message": message,
         "exception": error,
         "stacktrace": traceback.format_exc().splitlines()
-    })
-
+    }
+    
 
 
 async def onReady(client:commands.Bot):
     global BOT_LOG_CHANNEL
-    BOT_LOG_CHANNEL = client.get_channel(498934032982212649)
+    BOT_LOG_CHANNEL = client.get_channel(591012622745468958)
     if BOT_LOG_CHANNEL is None:
         logger.error("Logging channel is misconfigured, aborting startup!")
         await client.logout()
