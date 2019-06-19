@@ -12,7 +12,7 @@ from discord.ext import commands
 from discord import utils
 from utils import Util, Configuration
 
-class EventControl:
+class EventControl(commands.Cog):
     def __init__(self, bot):
         self.bot:commands.Bot = bot
 
@@ -56,31 +56,7 @@ class EventControl:
             if role.id == channel.guild.id:
                 everyone = role
                 await channel.set_permissions(everyone, read_messages=False)
-        await ctx.send("Event has ended! Results below.")
-        
-        message_votes = {}
-        with open(f'submissions/{ctx.guild.id}.json', 'r') as infile:
-            data = json.load(infile)
-            print(data)
-        for submitter in data:
-            print(submitter)
-            msg = await channel.get_message(int(submitter['MESSAGE_ID']))
-            votecount = msg.reactions[0].count
-            message_votes[str(submitter)] = votecount
-        message_votes_sorted = sort(message_votes.items(), key=operator.itemgetter(1))
-
-        first_points = list(message_votes_sorted.items())[0]
-        first_author = await ctx.bot.get_user_info(int(list(message_votes_sorted)[0]))
-        second_points = list(message_votes_sorted.items())[1]
-        second_author = await ctx.bot.get_user_info(int(list(message_votes_sorted)[1]))
-        third_points = list(message_votes_sorted.items())[2]
-        third_author = await ctx.bot.get_user_info(int(list(message_votes_sorted)[2]))                                                
-        e = discord.Embed(color=0x7289DA, timestamp=datetime.utcnow())
-        e.add_field(name="1st Place", value=f'Submitted by {first_author.name} : {str(first_points)} Upvotes', inline=True)
-        e.add_field(name="2nd Place", value=f'Submitted by {second_author.name} : {str(second_points)} Upvotes', inline=True)
-        e.add_field(name="3rd Place", value=f'Submitted by {third_author.name} : {str(third_points)} Upvotes', inline=True)
-        await ctx.send(embed=e)
-
+        await ctx.send("Event has ended!")
         os.remove(f'submissions/{ctx.guild.id}.json')
 
 def setup(bot):

@@ -4,7 +4,7 @@ from utils import Configuration, Permission
 from utils.Permission import head_only
 
 
-class EventSetup:
+class EventSetup(commands.Cog):
     def __init__(self, bot):
         pass
 

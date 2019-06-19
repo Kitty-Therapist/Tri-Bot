@@ -10,7 +10,7 @@ from discord import utils
 from utils import Configuration, Permission
 
 
-class Submissions:
+class Submissions(commands.Cog):
     def __init__(self, bot):
         self.bot: commands.Bot = bot
 
@@ -21,7 +21,6 @@ class Submissions:
     @commands.cooldown(1, 10, BucketType.user)
     async def submit(self, ctx, *content):
         channel = self.bot.get_channel(Configuration.getConfigVar(ctx.guild.id, "SUBMISSION_CHANNEL"))
-        upvote = utils.get(self.bot.emojis, id=499401182427611136)
 
         if os.path.exists(f'submissions/{ctx.guild.id}.json') is False:
             return await ctx.send("There is currently no event running.")
