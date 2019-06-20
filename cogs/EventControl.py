@@ -4,6 +4,7 @@ import datetime
 import os
 import operator
 import json
+import discord
 from subprocess import Popen
 import subprocess
 import datetime
@@ -22,7 +23,7 @@ class EventControl(commands.Cog):
         if os.path.exists(f'submissions/{ctx.guild.id}.json') is True:
             return await ctx.send("There is a event already running! Use the event end command before starting a new one.")
 
-        mods = discord.utils.get(ctx.guild.roles, id=391357618683379724)
+        mods = discord.utils.get(ctx.guild.roles, id=525464284759588866)
         channel = ctx.bot.get_channel(int(Configuration.getConfigVar(ctx.guild.id, "SUBMISSION_CHANNEL")))
         everyone = None
 
@@ -30,7 +31,7 @@ class EventControl(commands.Cog):
         with open(f'submissions/{ctx.guild.id}.json', 'w') as outfile:
             json.dump(data, outfile, indent=4)
 
-        if ctx.author.id not in mods:
+        if 525464284759588866 not in [role.id for role in ctx.author.roles]:
             return
 
         for role in channel.guild.roles:
@@ -45,11 +46,11 @@ class EventControl(commands.Cog):
         if os.path.exists(f'submissions/{ctx.guild.id}.json') is False:
             return await ctx.send("There is currently no event running.")   
 
-        mods = discord.utils.get(ctx.guild.roles, id=391357618683379724)
+        mods = discord.utils.get(ctx.guild.roles, id=525464284759588866)
         channel = ctx.bot.get_channel(int(Configuration.getConfigVar(ctx.guild.id, "SUBMISSION_CHANNEL")))
         everyone = None
 
-        if ctx.author.id not in mods:
+        if 525464284759588866 not in [role.id for role in ctx.author.roles]:
             return
 
         for role in channel.guild.roles:

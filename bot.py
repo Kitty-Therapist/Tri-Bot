@@ -19,14 +19,14 @@ if not os.path.exists('config'):
 if not os.path.exists('submissions'):
     os.makedirs('submissions')
 
-TOKEN = "hello token"
+TOKEN = "No lol"
 
 bot = commands.Bot(command_prefix = "+")
 
 bot.starttime = datetime.datetime.now()
 bot.startup_done = False
 
-initial_extensions = ['EventSetup', 'Reload', 'EventControl']
+initial_extensions = ['EventSetup', 'Reload', 'EventControl', 'Submissions']
 
 if __name__ == '__main__':
     for extension in initial_extensions:
