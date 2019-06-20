@@ -19,14 +19,14 @@ if not os.path.exists('config'):
 if not os.path.exists('submissions'):
     os.makedirs('submissions')
 
-TOKEN = "No, you cannot have the token."
+TOKEN = "hello token"
 
 bot = commands.Bot(command_prefix = "+")
 
 bot.starttime = datetime.datetime.now()
 bot.startup_done = False
 
-initial_extensions = ['EventSetup', 'Reload', 'EventControl', 'Submissions']
+initial_extensions = ['EventSetup', 'Reload', 'EventControl']
 
 if __name__ == '__main__':
     for extension in initial_extensions:
@@ -99,16 +99,6 @@ async def on_error(event, *args, **kwargs):
         await BugLog.logToBotlog(embed=embed)
     except Exception as ex:
         BugLog.exception(f"Failed to log to botlog, either Discord broke or something is seriously wrong!\n{ex}", ex)
-
-
-
-# Adding the cogs to the bot
-if __name__ == '__main__':
-    for extension in initial_extensions:
-        try:
-            bot.load_extension(f"cogs.{extension}")
-        except Exception as e:
-            BugLog.startupError(f"Failed to load extention {extension}.", e)
 
 
 @bot.event
