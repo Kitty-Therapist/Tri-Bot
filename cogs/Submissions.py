@@ -23,7 +23,9 @@ class Submissions(commands.Cog):
         channel = self.bot.get_channel(Configuration.getConfigVar(ctx.guild.id, "SUBMISSION_CHANNEL"))
 
         if os.path.exists(f'submissions/{ctx.guild.id}.json') is False:
-            return await ctx.send("There is currently no event running.")
+            data = {}
+            with open(f'submissions/{ctx.guild.id}.json', 'w') as outfile:
+                json.dump(data, outfile, indent=4)
 
         if not channel:
             return await ctx.send("The submission channel is not configured, please tell a moderator.")
@@ -41,24 +43,21 @@ class Submissions(commands.Cog):
                 await reply.delete()
                 await ctx.message.delete()
                 return
-        else:
-            message = await channel.send((
-                f"**Artist:** {ctx.author.name}#{ctx.author.discriminator} ({ctx.author.id})\n"
-                f"**Link{'s' if len(links) > 1 else ''}:** {' '.join(links)}"
-            ))
-            message_id = message.id
-            data[str(ctx.author.id)] = {'SUBMISSION_LINK': ', '.join(links), 'MESSAGE_ID' : message_id}
-            reply = await ctx.send("I've sent your submission through, good luck with the event!")
-            await asyncio.sleep(10)
-            await reply.delete()
-            await ctx.message.delete()
-        #with open(f'submissions/{ctx.guild.id}.json', 'w') as outfile:
-            #json.dump(data, outfile, indent=4)
+            else:
+                message = await channel.send((
+                    f"**Artist:** {ctx.author.name}#{ctx.author.discriminator} ({ctx.author.id})\n"
+                    f"**Link{'s' if len(links) > 1 else ''}:** {' '.join(links)}"
+                ))
+                data[str(ctx.author.id)] = {'SUBMISSION_LINK': ', '.join(links)}
+                reply = await ctx.send("I've sent your submission through, good luck with the event!")
+                await asyncio.sleep(10)
+                await reply.delete()
+                await ctx.message.delete()
+            with open(f'submissions/{ctx.guild.id}.json', 'w') as outfile:
+                json.dump(data, outfile, indent=4)
+        except discord.Forbidden:
+            return await ctx.send("I can't send messages to the submission channel, please tell a moderator.")
 
-    @commands.command()
-    @commands.cooldown(1, 10, BucketType.user)
-    async def test(self, ctx):
-        await ctx.send("This is a test, but mainly a filler command to see if the end of the coding works.")
 
 def setup(bot):
-    bot.add_cog(Submissionps(bot))
+    bot.add_cog(Submissions(bot))
