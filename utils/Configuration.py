@@ -12,8 +12,17 @@ MASTER_CONFIG = dict()
 SERVER_CONFIGS = dict()
 
 CONFIG_TEMPLATE = {
-    "SUBMISSION_CHANNEL": 0,
-    "MOD_ROLE_ID": 0
+    "GENERAL_ART_CHANNEL": 0,
+    "FAN_ART_CHANNEL": 0,
+    "EMOJIS_CHANNEL": 0,
+    "MERCH_CHANNEL": 0,
+    "MUSIC_CHANNEL": 0,
+    "STORY_CHANNEL": 0, 
+    "GENERAL_BOT_CHANNEL": 0,
+    "FUNCTIONAL": 0,
+    "ENTERTAINMENT": 0,
+    "SHITPOST": 0,
+    "CENSORED_LOGS": 0
 }
 
 async def onReady(bot:commands.Bot):
