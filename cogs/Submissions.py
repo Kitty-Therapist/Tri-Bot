@@ -34,7 +34,8 @@ class Submissions(commands.Cog):
 
         for badlink in blacklist:
             if badlink in content[0]:
-                return await censor.send(f":warning: **{ctx.author.name}#{ctx.author.discriminator} (``{ctx.author.id}``) has attempted to submit a censored link. Please view the link at your own caution:**```{content}```")
+                await censor.send(f":warning: **{ctx.author.name}#{ctx.author.discriminator} (``{ctx.author.id}``) has attempted to submit a censored link. Please view the link at your own caution:**```{content}```")
+                return await ctx.message.delete()
 
         if os.path.exists(f'submissions/{ctx.guild.id}.json') is False:
             data = {}
@@ -82,7 +83,8 @@ class Submissions(commands.Cog):
 
         for badlink in blacklist:
             if badlink in content[0]:
-                return await censor.send(f":warning: **{ctx.author.name}#{ctx.author.discriminator} (``{ctx.author.id}``) has attempted to submit a censored link. Please view the link at your own caution:**```{content}```")
+                await censor.send(f":warning: **{ctx.author.name}#{ctx.author.discriminator} (``{ctx.author.id}``) has attempted to submit a censored link. Please view the link at your own caution:**```{content}```")
+                return await ctx.message.delete()
 
         if os.path.exists(f'submissions/{ctx.guild.id}.json') is False:
             data = {}
@@ -129,7 +131,8 @@ class Submissions(commands.Cog):
 
         for badlink in blacklist:
             if badlink in content[0]:
-                return await censor.send(f":warning: **{ctx.author.name}#{ctx.author.discriminator} (``{ctx.author.id}``) has attempted to submit a censored link. Please view the link at your own caution:**```{content}```")
+                await censor.send(f":warning: **{ctx.author.name}#{ctx.author.discriminator} (``{ctx.author.id}``) has attempted to submit a censored link. Please view the link at your own caution:**```{content}```")
+                return await ctx.message.delete()
 
         if os.path.exists(f'submissions/{ctx.guild.id}.json') is False:
             data = {}
@@ -176,7 +179,8 @@ class Submissions(commands.Cog):
 
         for badlink in blacklist:
             if badlink in content[0]:
-                return await censor.send(f":warning: **{ctx.author.name}#{ctx.author.discriminator} (``{ctx.author.id}``) has attempted to submit a censored link. Please view the link at your own caution:**```{content}```")
+                await censor.send(f":warning: **{ctx.author.name}#{ctx.author.discriminator} (``{ctx.author.id}``) has attempted to submit a censored link. Please view the link at your own caution:**```{content}```")
+                return await ctx.message.delete()
 
         if os.path.exists(f'submissions/{ctx.guild.id}.json') is False:
             data = {}
@@ -223,7 +227,8 @@ class Submissions(commands.Cog):
 
         for badlink in blacklist:
             if badlink in content[0]:
-                return await censor.send(f":warning: **{ctx.author.name}#{ctx.author.discriminator} (``{ctx.author.id}``) has attempted to submit a censored link. Please view the link at your own caution:**```{content}```")
+                await censor.send(f":warning: **{ctx.author.name}#{ctx.author.discriminator} (``{ctx.author.id}``) has attempted to submit a censored link. Please view the link at your own caution:**```{content}```")
+                return await ctx.message.delete()
 
         if os.path.exists(f'submissions/{ctx.guild.id}.json') is False:
             data = {}
@@ -270,7 +275,8 @@ class Submissions(commands.Cog):
 
         for badlink in blacklist:
             if badlink in content[0]:
-                return await censor.send(f":warning: **{ctx.author.name}#{ctx.author.discriminator} (``{ctx.author.id}``) has attempted to submit a censored link. Please view the link at your own caution:**```{content}```")
+                await censor.send(f":warning: **{ctx.author.name}#{ctx.author.discriminator} (``{ctx.author.id}``) has attempted to submit a censored link. Please view the link at your own caution:**```{content}```")
+                return await ctx.message.delete()
 
         if os.path.exists(f'submissions/{ctx.guild.id}.json') is False:
             data = {}
@@ -310,14 +316,15 @@ class Submissions(commands.Cog):
 
     @submit.command()
     @commands.cooldown(1, 10, BucketType.user)
-    async def functional(self, ctx, *content):
-        channel = self.bot.get_channel(Configuration.getConfigVar(ctx.guild.id, "FUNCTIONAL"))
+    async def productivity(self, ctx, *content):
+        channel = self.bot.get_channel(Configuration.getConfigVar(ctx.guild.id, "PRODUCTIVITY"))
         censor = self.bot.get_channel(Configuration.getConfigVar(ctx.guild.id, "CENSORED_LOGS"))
         blacklist = Configuration.getConfigVar(ctx.guild.id, "BAD_LINKS")
 
         for badlink in blacklist:
             if badlink in content[0]:
-                return await censor.send(f":warning: **{ctx.author.name}#{ctx.author.discriminator} (``{ctx.author.id}``) has attempted to submit a censored link. Please view the link at your own caution:**```{content}```")
+                await censor.send(f":warning: **{ctx.author.name}#{ctx.author.discriminator} (``{ctx.author.id}``) has attempted to submit a censored link. Please view the link at your own caution:**```{content}```")
+                return await ctx.message.delete()
 
         if os.path.exists(f'submissions/{ctx.guild.id}.json') is False:
             data = {}
@@ -364,7 +371,8 @@ class Submissions(commands.Cog):
 
         for badlink in blacklist:
             if badlink in content[0]:
-                return await censor.send(f":warning: **{ctx.author.name}#{ctx.author.discriminator} (``{ctx.author.id}``) has attempted to submit a censored link. Please view the link at your own caution:**```{content}```")
+                await censor.send(f":warning: **{ctx.author.name}#{ctx.author.discriminator} (``{ctx.author.id}``) has attempted to submit a censored link. Please view the link at your own caution:**```{content}```")
+                return await ctx.message.delete()
 
         if os.path.exists(f'submissions/{ctx.guild.id}.json') is False:
             data = {}
@@ -411,7 +419,8 @@ class Submissions(commands.Cog):
 
         for badlink in blacklist:
             if badlink in content[0]:
-                return await censor.send(f":warning: **{ctx.author.name}#{ctx.author.discriminator} (``{ctx.author.id}``) has attempted to submit a censored link. Please view the link at your own caution:**```{content}```")
+                await censor.send(f":warning: **{ctx.author.name}#{ctx.author.discriminator} (``{ctx.author.id}``) has attempted to submit a censored link. Please view the link at your own caution:**```{content}```")
+                return await ctx.message.delete()
 
         if os.path.exists(f'submissions/{ctx.guild.id}.json') is False:
             data = {}
@@ -458,7 +467,8 @@ class Submissions(commands.Cog):
 
         for badlink in blacklist:
             if badlink in content[0]:
-                return await censor.send(f":warning: **{ctx.author.name}#{ctx.author.discriminator} (``{ctx.author.id}``) has attempted to submit a censored link. Please view the link at your own caution:**```{content}```")
+                await censor.send(f":warning: **{ctx.author.name}#{ctx.author.discriminator} (``{ctx.author.id}``) has attempted to submit a censored link. Please view the link at your own caution:**```{content}```")
+                return await ctx.message.delete()
 
         if os.path.exists(f'submissions/{ctx.guild.id}.json') is False:
             data = {}
