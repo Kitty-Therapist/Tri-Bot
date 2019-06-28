@@ -349,7 +349,7 @@ class Submissions(commands.Cog):
                 return
             else:
                 message = await channel.send((
-                    f"**Functional Bot Developer:** {ctx.author.name}#{ctx.author.discriminator} ({ctx.author.id})\n"
+                    f"**Productivity Bot Developer:** {ctx.author.name}#{ctx.author.discriminator} ({ctx.author.id})\n"
                     f"**Link{'s' if len(links) > 1 else ''}:** {' '.join(links)}"
                 ))
                 data[str(ctx.author.id)] = {'SUBMISSION_LINK': ', '.join(links)}
@@ -397,7 +397,7 @@ class Submissions(commands.Cog):
                 return
             else:
                 message = await channel.send((
-                    f"**Enterainment Bot Developer:** {ctx.author.name}#{ctx.author.discriminator} ({ctx.author.id})\n"
+                    f"**Entertainment Bot Developer:** {ctx.author.name}#{ctx.author.discriminator} ({ctx.author.id})\n"
                     f"**Link{'s' if len(links) > 1 else ''}:** {' '.join(links)}"
                 ))
                 data[str(ctx.author.id)] = {'SUBMISSION_LINK': ', '.join(links)}
