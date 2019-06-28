@@ -47,8 +47,11 @@ class Submissions(commands.Cog):
 
         links = re.findall(r"https?://\S+\.[^\s>]+", ' '.join(content))
         if not links or len(links) > 1:
-            return await ctx.send("Your submission must contain at least one link, and no more than one!")
-            pass
+            reply = await ctx.send("Your submission must contain one link, and no more than one!")
+            await asyncio.sleep(5)
+            await reply.delete()
+            await ctx.message.delete()
+            return
 
         try:
             with open(f'submissions/{ctx.guild.id}.json', 'r') as infile:
@@ -66,7 +69,7 @@ class Submissions(commands.Cog):
                 ))
                 data[str(ctx.author.id)] = {'SUBMISSION_LINK': ', '.join(links)}
                 reply = await ctx.send("I've sent your submission through, good luck with the event!")
-                await asyncio.sleep(10)
+                await asyncio.sleep(5)
                 await reply.delete()
                 await ctx.message.delete()
             with open(f'submissions/{ctx.guild.id}.json', 'w') as outfile:
@@ -96,7 +99,11 @@ class Submissions(commands.Cog):
 
         links = re.findall(r"https?://\S+\.[^\s>]+", ' '.join(content))
         if not links or len(links) > 1:
-            return await ctx.send("Your submission must contain at least one link, and no more than one!")
+            reply = await ctx.send("Your submission must contain one link, and no more than one!")
+            await asyncio.sleep(5)
+            await reply.delete()
+            await ctx.message.delete()
+            return
 
         try:
             with open(f'submissions/{ctx.guild.id}.json', 'r') as infile:
@@ -114,7 +121,7 @@ class Submissions(commands.Cog):
                 ))
                 data[str(ctx.author.id)] = {'SUBMISSION_LINK': ', '.join(links)}
                 reply = await ctx.send("I've sent your submission through, good luck with the event!")
-                await asyncio.sleep(10)
+                await asyncio.sleep(5)
                 await reply.delete()
                 await ctx.message.delete()
             with open(f'submissions/{ctx.guild.id}.json', 'w') as outfile:
@@ -144,7 +151,11 @@ class Submissions(commands.Cog):
 
         links = re.findall(r"https?://\S+\.[^\s>]+", ' '.join(content))
         if not links or len(links) > 1:
-            return await ctx.send("Your submission must contain at least one link, and no more than one!")
+            reply = await ctx.send("Your submission must contain one link, and no more than one!")
+            await asyncio.sleep(5)
+            await reply.delete()
+            await ctx.message.delete()
+            return
 
         try:
             with open(f'submissions/{ctx.guild.id}.json', 'r') as infile:
@@ -162,7 +173,7 @@ class Submissions(commands.Cog):
                 ))
                 data[str(ctx.author.id)] = {'SUBMISSION_LINK': ', '.join(links)}
                 reply = await ctx.send("I've sent your submission through, good luck with the event!")
-                await asyncio.sleep(10)
+                await asyncio.sleep(5)
                 await reply.delete()
                 await ctx.message.delete()
             with open(f'submissions/{ctx.guild.id}.json', 'w') as outfile:
@@ -192,7 +203,11 @@ class Submissions(commands.Cog):
 
         links = re.findall(r"https?://\S+\.[^\s>]+", ' '.join(content))
         if not links or len(links) > 1:
-            return await ctx.send("Your submission must contain at least one link, and no more than one!")
+            reply = await ctx.send("Your submission must contain one link, and no more than one!")
+            await asyncio.sleep(5)
+            await reply.delete()
+            await ctx.message.delete()
+            return
 
         try:
             with open(f'submissions/{ctx.guild.id}.json', 'r') as infile:
@@ -210,7 +225,7 @@ class Submissions(commands.Cog):
                 ))
                 data[str(ctx.author.id)] = {'SUBMISSION_LINK': ', '.join(links)}
                 reply = await ctx.send("I've sent your submission through, good luck with the event!")
-                await asyncio.sleep(10)
+                await asyncio.sleep(5)
                 await reply.delete()
                 await ctx.message.delete()
             with open(f'submissions/{ctx.guild.id}.json', 'w') as outfile:
@@ -240,7 +255,11 @@ class Submissions(commands.Cog):
 
         links = re.findall(r"https?://\S+\.[^\s>]+", ' '.join(content))
         if not links or len(links) > 1:
-            return await ctx.send("Your submission must contain at least one link, and no more than one!")
+            reply = await ctx.send("Your submission must contain one link, and no more than one!")
+            await asyncio.sleep(5)
+            await reply.delete()
+            await ctx.message.delete()
+            return
 
         try:
             with open(f'submissions/{ctx.guild.id}.json', 'r') as infile:
@@ -258,7 +277,7 @@ class Submissions(commands.Cog):
                 ))
                 data[str(ctx.author.id)] = {'SUBMISSION_LINK': ', '.join(links)}
                 reply = await ctx.send("I've sent your submission through, good luck with the event!")
-                await asyncio.sleep(10)
+                await asyncio.sleep(5)
                 await reply.delete()
                 await ctx.message.delete()
             with open(f'submissions/{ctx.guild.id}.json', 'w') as outfile:
@@ -288,7 +307,11 @@ class Submissions(commands.Cog):
 
         links = re.findall(r"https?://\S+\.[^\s>]+", ' '.join(content))
         if not links or len(links) > 1:
-            return await ctx.send("Your submission must contain at least one link, and no more than one!")
+            reply = await ctx.send("Your submission must contain one link, and no more than one!")
+            await asyncio.sleep(5)
+            await reply.delete()
+            await ctx.message.delete()
+            return
 
         try:
             with open(f'submissions/{ctx.guild.id}.json', 'r') as infile:
@@ -306,7 +329,7 @@ class Submissions(commands.Cog):
                 ))
                 data[str(ctx.author.id)] = {'SUBMISSION_LINK': ', '.join(links)}
                 reply = await ctx.send("I've sent your submission through, good luck with the event!")
-                await asyncio.sleep(10)
+                await asyncio.sleep(5)
                 await reply.delete()
                 await ctx.message.delete()
             with open(f'submissions/{ctx.guild.id}.json', 'w') as outfile:
@@ -336,7 +359,11 @@ class Submissions(commands.Cog):
 
         links = re.findall(r"https?://\S+\.[^\s>]+", ' '.join(content))
         if not links or len(links) > 1:
-            return await ctx.send("Your submission must contain at least one link, and no more than one!")
+            reply = await ctx.send("Your submission must contain one link, and no more than one!")
+            await asyncio.sleep(5)
+            await reply.delete()
+            await ctx.message.delete()
+            return
 
         try:
             with open(f'submissions/{ctx.guild.id}.json', 'r') as infile:
@@ -354,7 +381,7 @@ class Submissions(commands.Cog):
                 ))
                 data[str(ctx.author.id)] = {'SUBMISSION_LINK': ', '.join(links)}
                 reply = await ctx.send("I've sent your submission through, good luck with the event!")
-                await asyncio.sleep(10)
+                await asyncio.sleep(5)
                 await reply.delete()
                 await ctx.message.delete()
             with open(f'submissions/{ctx.guild.id}.json', 'w') as outfile:
@@ -384,7 +411,11 @@ class Submissions(commands.Cog):
 
         links = re.findall(r"https?://\S+\.[^\s>]+", ' '.join(content))
         if not links or len(links) > 1:
-            return await ctx.send("Your submission must contain at least one link, and no more than one!")
+            reply = await ctx.send("Your submission must contain one link, and no more than one!")
+            await asyncio.sleep(5)
+            await reply.delete()
+            await ctx.message.delete()
+            return
 
         try:
             with open(f'submissions/{ctx.guild.id}.json', 'r') as infile:
@@ -402,7 +433,7 @@ class Submissions(commands.Cog):
                 ))
                 data[str(ctx.author.id)] = {'SUBMISSION_LINK': ', '.join(links)}
                 reply = await ctx.send("I've sent your submission through, good luck with the event!")
-                await asyncio.sleep(10)
+                await asyncio.sleep(5)
                 await reply.delete()
                 await ctx.message.delete()
             with open(f'submissions/{ctx.guild.id}.json', 'w') as outfile:
@@ -432,7 +463,11 @@ class Submissions(commands.Cog):
 
         links = re.findall(r"https?://\S+\.[^\s>]+", ' '.join(content))
         if not links or len(links) > 1:
-            return await ctx.send("Your submission must contain at least one link, and no more than one!")
+            reply = await ctx.send("Your submission must contain one link, and no more than one!")
+            await asyncio.sleep(5)
+            await reply.delete()
+            await ctx.message.delete()
+            return
 
         try:
             with open(f'submissions/{ctx.guild.id}.json', 'r') as infile:
@@ -450,7 +485,7 @@ class Submissions(commands.Cog):
                 ))
                 data[str(ctx.author.id)] = {'SUBMISSION_LINK': ', '.join(links)}
                 reply = await ctx.send("I've sent your submission through, good luck with the event!")
-                await asyncio.sleep(10)
+                await asyncio.sleep(5)
                 await reply.delete()
                 await ctx.message.delete()
             with open(f'submissions/{ctx.guild.id}.json', 'w') as outfile:
@@ -480,7 +515,11 @@ class Submissions(commands.Cog):
 
         links = re.findall(r"https?://\S+\.[^\s>]+", ' '.join(content))
         if not links or len(links) > 1:
-            return await ctx.send("Your submission must contain at least one link, and no more than one!")
+            reply = await ctx.send("Your submission must contain one link, and no more than one!")
+            await asyncio.sleep(5)
+            await reply.delete()
+            await ctx.message.delete()
+            return
 
         try:
             with open(f'submissions/{ctx.guild.id}.json', 'r') as infile:
